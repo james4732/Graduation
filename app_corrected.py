@@ -46,3 +46,11 @@ with col2:
         st.markdown(f"**Award:** {row['Award_Title']}")
     elif not student_id:
         st.markdown("Please scan a student's QR code.")
+
+with col2:
+    st.header("Principal View")
+    if student_id and not student.empty:
+        st.markdown(f"## {row['Full_Name']}")
+        st.markdown(f"**Award:** {row['Award_Title']}")
+    elif not student_id:
+        st.markdown("Please scan a student's QR code.")
