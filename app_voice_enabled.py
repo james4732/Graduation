@@ -46,7 +46,7 @@ with col2:
         <script>
         const speak = () => {{
             const utterance = new SpeechSynthesisUtterance("{name_to_announce}");
-            utterance.rate = 0.9;
+            utterance.rate = 0.5;
             speechSynthesis.speak(utterance);
         }};
         speak();
