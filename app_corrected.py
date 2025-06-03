@@ -1,14 +1,21 @@
-
 import streamlit as st
 import pandas as pd
+import requests
+from io import StringIO
 
-# Set page config MUST be first!
+# Set page configuration
 st.set_page_config(page_title="Graduation Display", layout="wide")
 
-# Load student data
+# Load student data from GitHub
 @st.cache_data
 def load_data():
-    return pd.read_csv("sample_student_list.csv")
+    url = "https://raw.githubusercontent.com/james4732/Graduation/refs/heads/main/sample_student_list.csv"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return pd.read_csv(StringIO(response.text))
+    else:
+        st.error("Failed to load data from GitHub.")
+        return pd.DataFrame()  # Return empty DataFrame on failure
 
 df = load_data()
 
